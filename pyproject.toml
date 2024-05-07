@@ -11,10 +11,9 @@ documentation = "https://abrahammurciano.github.io/debby/debby"
 keywords = []
 
 [tool.poetry.dependencies]
-python = ">=3.11, <3.13"
+python = "^3.11"
 
 [tool.poetry.dev-dependencies]
-pytest = "*"
 black = "*"
 pdoc3 = "*"
 toml = "*"
@@ -23,9 +22,6 @@ mypy = "*"
 
 [tool.poetry.scripts]
 debby = "debby.__main__:main"
-
-[tool.poetry.group.dev.dependencies]
-pyinstaller = "^6.6.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
