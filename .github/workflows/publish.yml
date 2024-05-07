@@ -1,9 +1,9 @@
 name: Publish
 
 on:
-  release:
-    types:
-      - created
+  push:
+    tags:
+      - 'v*'
 
   workflow_dispatch:
 
@@ -18,12 +18,22 @@ jobs:
       - name: Get Poetry
         run: pip install poetry
       - name: Set Version
-        run: poetry version $(echo ${{ github.event.release.tag_name }} | cut -d 'v' -f 2)
+        run: poetry version $(echo ${{ github.ref_name }} | cut -d 'v' -f 2)
       - name: Build Package
         run: poetry build
       - name: Check Build
         run: pip install dist/*.whl
-      - name: Set environment variables for conda build
-        run: echo "POETRY_VERSION=$(poetry version -s)" >> $GITHUB_ENV
       - name: Publish Pip Package
         run: poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+      - name: Build binary
+        run: poetry run python -m PyInstaller debby/__main__.py --distpath dist/bin --onefile -n debby --collect-data debby --recursive-copy-metadata debby
+      - name: Build .deb package
+        run: ./dist/bin/debby --file ./dist/bin/debby /usr/bin/debby --poetry pyproject.toml -o ./dist
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.whl
+            dist/*.deb
+            dist/bin/debby
+          token: ${{ secrets.PERSONAL_GH_TOKEN }}
