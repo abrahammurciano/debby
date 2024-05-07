@@ -30,7 +30,7 @@ jobs:
           pip install pyinstaller
           pyinstaller debby/__main__.py --distpath dist/bin --onefile -n debby --collect-data debby --recursive-copy-metadata debby
       - name: Build .deb package
-        run: ./dist/bin/debby --file ./dist/bin/debby /usr/bin/debby --poetry pyproject.toml -o ./dist
+        run: dpkg-deb --build $(./dist/bin/debby --file ./dist/bin/debby /usr/bin/debby --poetry pyproject.toml -o ./dist)
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
