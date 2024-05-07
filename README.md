@@ -61,3 +61,4 @@ It is possible to provide a template for the control file with `-t/--template pa
 | `{meta.enhances}` | The [enhanced packages](https://www.debian.org/doc/debian-policy/ch-relationships.html) of the package | `jq, pv (>= 1.0.0)` |
 | `{meta.breaks}` | The [packages that this package breaks](https://www.debian.org/doc/debian-policy/ch-relationships.html) | `jq, pv (>= 1.0.0)` |
 | `{meta.conflicts}` | The [packages that this package conflicts with](https://www.debian.org/doc/debian-policy/ch-relationships.html) | `jq, pv (>= 1.0.0)` |
+| `{files.total_size}` | The total size of all the files given with the `-f/--file` option | `123456` |

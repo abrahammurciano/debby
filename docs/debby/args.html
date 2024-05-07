@@ -34,33 +34,33 @@
 <dl>
 <dt id="debby.args.Args"><code class="flex name class">
 <span>class <span class="ident">Args</span></span>
-<span>(</span><span>files: Sequence[tuple[pathlib.Path, pathlib.Path]], template: pathlib.Path | None, out_dir: pathlib.Path, pyproject: pathlib.Path | None, poetry: pathlib.Path | None, name: str | None, source: str | None, version: str | None, section: str | None, priority: str | None, architecture: str | None, essential: Optional[Literal['yes', 'no']], maintainer: str | None, description: str | None, homepage: str | None, depends: str | None, pre_depends: str | None, recommends: str | None, suggests: str | None, enhances: str | None, breaks: str | None, conflicts: str | None, no_size: bool = False)</span>
+<span>(</span><span>files: Sequence[Tuple[pathlib.Path, pathlib.Path]], template: Optional[pathlib.Path], out_dir: pathlib.Path, pyproject: Optional[pathlib.Path], poetry: Optional[pathlib.Path], name: Optional[str], source: Optional[str], version: Optional[str], section: Optional[str], priority: Optional[str], architecture: Optional[str], essential: Optional[Literal['yes', 'no']], maintainer: Optional[str], description: Optional[str], homepage: Optional[str], depends: Optional[str], pre_depends: Optional[str], recommends: Optional[str], suggests: Optional[str], enhances: Optional[str], breaks: Optional[str], conflicts: Optional[str], no_size: bool = False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Args(files: Sequence[tuple[pathlib.Path, pathlib.Path]], template: pathlib.Path | None, out_dir: pathlib.Path, pyproject: pathlib.Path | None, poetry: pathlib.Path | None, name: str | None, source: str | None, version: str | None, section: str | None, priority: str | None, architecture: str | None, essential: Optional[Literal['yes', 'no']], maintainer: str | None, description: str | None, homepage: str | None, depends: str | None, pre_depends: str | None, recommends: str | None, suggests: str | None, enhances: str | None, breaks: str | None, conflicts: str | None, no_size: bool = False)</p></div>
+<div class="desc"><p>Args(files: Sequence[Tuple[pathlib.Path, pathlib.Path]], template: Union[pathlib.Path, NoneType], out_dir: pathlib.Path, pyproject: Union[pathlib.Path, NoneType], poetry: Union[pathlib.Path, NoneType], name: Union[str, NoneType], source: Union[str, NoneType], version: Union[str, NoneType], section: Union[str, NoneType], priority: Union[str, NoneType], architecture: Union[str, NoneType], essential: Union[Literal['yes', 'no'], NoneType], maintainer: Union[str, NoneType], description: Union[str, NoneType], homepage: Union[str, NoneType], depends: Union[str, NoneType], pre_depends: Union[str, NoneType], recommends: Union[str, NoneType], suggests: Union[str, NoneType], enhances: Union[str, NoneType], breaks: Union[str, NoneType], conflicts: Union[str, NoneType], no_size: bool = False)</p></div>
 <h3>Class variables</h3>
 <dl>
-<dt id="debby.args.Args.architecture"><code class="name">var <span class="ident">architecture</span> : str | None</code></dt>
+<dt id="debby.args.Args.architecture"><code class="name">var <span class="ident">architecture</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.breaks"><code class="name">var <span class="ident">breaks</span> : str | None</code></dt>
+<dt id="debby.args.Args.breaks"><code class="name">var <span class="ident">breaks</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.conflicts"><code class="name">var <span class="ident">conflicts</span> : str | None</code></dt>
+<dt id="debby.args.Args.conflicts"><code class="name">var <span class="ident">conflicts</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.depends"><code class="name">var <span class="ident">depends</span> : str | None</code></dt>
+<dt id="debby.args.Args.depends"><code class="name">var <span class="ident">depends</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.description"><code class="name">var <span class="ident">description</span> : str | None</code></dt>
+<dt id="debby.args.Args.description"><code class="name">var <span class="ident">description</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.enhances"><code class="name">var <span class="ident">enhances</span> : str | None</code></dt>
+<dt id="debby.args.Args.enhances"><code class="name">var <span class="ident">enhances</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -68,19 +68,19 @@
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.files"><code class="name">var <span class="ident">files</span> : Sequence[tuple[pathlib.Path, pathlib.Path]]</code></dt>
+<dt id="debby.args.Args.files"><code class="name">var <span class="ident">files</span> : Sequence[Tuple[pathlib.Path, pathlib.Path]]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.homepage"><code class="name">var <span class="ident">homepage</span> : str | None</code></dt>
+<dt id="debby.args.Args.homepage"><code class="name">var <span class="ident">homepage</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.maintainer"><code class="name">var <span class="ident">maintainer</span> : str | None</code></dt>
+<dt id="debby.args.Args.maintainer"><code class="name">var <span class="ident">maintainer</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.name"><code class="name">var <span class="ident">name</span> : str | None</code></dt>
+<dt id="debby.args.Args.name"><code class="name">var <span class="ident">name</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -92,43 +92,43 @@
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.poetry"><code class="name">var <span class="ident">poetry</span> : pathlib.Path | None</code></dt>
+<dt id="debby.args.Args.poetry"><code class="name">var <span class="ident">poetry</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.pre_depends"><code class="name">var <span class="ident">pre_depends</span> : str | None</code></dt>
+<dt id="debby.args.Args.pre_depends"><code class="name">var <span class="ident">pre_depends</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.priority"><code class="name">var <span class="ident">priority</span> : str | None</code></dt>
+<dt id="debby.args.Args.priority"><code class="name">var <span class="ident">priority</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.pyproject"><code class="name">var <span class="ident">pyproject</span> : pathlib.Path | None</code></dt>
+<dt id="debby.args.Args.pyproject"><code class="name">var <span class="ident">pyproject</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.recommends"><code class="name">var <span class="ident">recommends</span> : str | None</code></dt>
+<dt id="debby.args.Args.recommends"><code class="name">var <span class="ident">recommends</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.section"><code class="name">var <span class="ident">section</span> : str | None</code></dt>
+<dt id="debby.args.Args.section"><code class="name">var <span class="ident">section</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.source"><code class="name">var <span class="ident">source</span> : str | None</code></dt>
+<dt id="debby.args.Args.source"><code class="name">var <span class="ident">source</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.suggests"><code class="name">var <span class="ident">suggests</span> : str | None</code></dt>
+<dt id="debby.args.Args.suggests"><code class="name">var <span class="ident">suggests</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.template"><code class="name">var <span class="ident">template</span> : pathlib.Path | None</code></dt>
+<dt id="debby.args.Args.template"><code class="name">var <span class="ident">template</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.args.Args.version"><code class="name">var <span class="ident">version</span> : str | None</code></dt>
+<dt id="debby.args.Args.version"><code class="name">var <span class="ident">version</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -136,7 +136,7 @@
 <h3>Static methods</h3>
 <dl>
 <dt id="debby.args.Args.parse"><code class="name flex">
-<span>def <span class="ident">parse</span></span>(<span>argv: Optional[Sequence[str]] = None) ‑> Self</span>
+<span>def <span class="ident">parse</span></span>(<span>argv: Optional[Sequence[str]] = None) ‑> typing_extensions.Self</span>
 </code></dt>
 <dd>
 <div class="desc"></div>

@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Optional
 
 from debby.files import Files
 from debby.meta import Meta
@@ -10,7 +10,7 @@ class ControlFile:
         self,
         meta: Meta,
         files: Files,
-        template: Path | None = None,
+        template: Optional[Path] = None,
         include_size: bool = True,
     ) -> None:
         self._meta = meta

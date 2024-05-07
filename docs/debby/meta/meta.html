@@ -34,83 +34,86 @@
 <dl>
 <dt id="debby.meta.meta.Meta"><code class="flex name class">
 <span>class <span class="ident">Meta</span></span>
-<span>(</span><span>*, name: str, source: str | None = None, version: str, section: str | None = None, priority: str | None = None, architecture: str = 'all', essential: Optional[Literal['yes', 'no']] = None, maintainer: str, description: str, homepage: str | None = None, depends: str | None = None, pre_depends: str | None = None, recommends: str | None = None, suggests: str | None = None, enhances: str | None = None, breaks: str | None = None, conflicts: str | None = None)</span>
+<span>(</span><span>name: str, version: str, maintainer: str, description: str, architecture: str = 'all', source: Optional[str] = None, section: Optional[str] = None, priority: Optional[str] = None, essential: Optional[Literal['yes', 'no']] = None, homepage: Optional[str] = None, depends: Optional[str] = None, pre_depends: Optional[str] = None, recommends: Optional[str] = None, suggests: Optional[str] = None, enhances: Optional[str] = None, breaks: Optional[str] = None, conflicts: Optional[str] = None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Metadata for a Debian package.</p></div>
-<h3>Instance variables</h3>
+<h3>Class variables</h3>
 <dl>
 <dt id="debby.meta.meta.Meta.architecture"><code class="name">var <span class="ident">architecture</span> : str</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
 </dd>
-<dt id="debby.meta.meta.Meta.breaks"><code class="name">var <span class="ident">breaks</span> : str | None</code></dt>
-<dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
-</dd>
-<dt id="debby.meta.meta.Meta.conflicts"><code class="name">var <span class="ident">conflicts</span> : str | None</code></dt>
-<dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
-</dd>
-<dt id="debby.meta.meta.Meta.depends"><code class="name">var <span class="ident">depends</span> : str | None</code></dt>
-<dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
-</dd>
-<dt id="debby.meta.meta.Meta.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
-<dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
-</dd>
-<dt id="debby.meta.meta.Meta.enhances"><code class="name">var <span class="ident">enhances</span> : str | None</code></dt>
-<dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
-</dd>
-<dt id="debby.meta.meta.Meta.essential"><code class="name">var <span class="ident">essential</span> : Optional[Literal['yes', 'no']]</code></dt>
-<dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
-</dd>
-<dt id="debby.meta.meta.Meta.full_name"><code class="name">var <span class="ident">full_name</span> : str</code></dt>
+<dt id="debby.meta.meta.Meta.breaks"><code class="name">var <span class="ident">breaks</span> : Optional[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.meta.meta.Meta.homepage"><code class="name">var <span class="ident">homepage</span> : str | None</code></dt>
+<dt id="debby.meta.meta.Meta.conflicts"><code class="name">var <span class="ident">conflicts</span> : Optional[str]</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
+</dd>
+<dt id="debby.meta.meta.Meta.depends"><code class="name">var <span class="ident">depends</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.meta.meta.Meta.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.meta.meta.Meta.enhances"><code class="name">var <span class="ident">enhances</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.meta.meta.Meta.essential"><code class="name">var <span class="ident">essential</span> : Optional[Literal['yes', 'no']]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.meta.meta.Meta.homepage"><code class="name">var <span class="ident">homepage</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt id="debby.meta.meta.Meta.maintainer"><code class="name">var <span class="ident">maintainer</span> : str</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
 </dd>
 <dt id="debby.meta.meta.Meta.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
 </dd>
-<dt id="debby.meta.meta.Meta.pre_depends"><code class="name">var <span class="ident">pre_depends</span> : str | None</code></dt>
+<dt id="debby.meta.meta.Meta.pre_depends"><code class="name">var <span class="ident">pre_depends</span> : Optional[str]</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
 </dd>
-<dt id="debby.meta.meta.Meta.priority"><code class="name">var <span class="ident">priority</span> : str | None</code></dt>
+<dt id="debby.meta.meta.Meta.priority"><code class="name">var <span class="ident">priority</span> : Optional[str]</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
 </dd>
-<dt id="debby.meta.meta.Meta.recommends"><code class="name">var <span class="ident">recommends</span> : str | None</code></dt>
+<dt id="debby.meta.meta.Meta.recommends"><code class="name">var <span class="ident">recommends</span> : Optional[str]</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
 </dd>
-<dt id="debby.meta.meta.Meta.section"><code class="name">var <span class="ident">section</span> : str | None</code></dt>
+<dt id="debby.meta.meta.Meta.section"><code class="name">var <span class="ident">section</span> : Optional[str]</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
 </dd>
-<dt id="debby.meta.meta.Meta.source"><code class="name">var <span class="ident">source</span> : str | None</code></dt>
+<dt id="debby.meta.meta.Meta.source"><code class="name">var <span class="ident">source</span> : Optional[str]</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
 </dd>
-<dt id="debby.meta.meta.Meta.suggests"><code class="name">var <span class="ident">suggests</span> : str | None</code></dt>
+<dt id="debby.meta.meta.Meta.suggests"><code class="name">var <span class="ident">suggests</span> : Optional[str]</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
 </dd>
 <dt id="debby.meta.meta.Meta.version"><code class="name">var <span class="ident">version</span> : str</code></dt>
 <dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="debby.meta.meta.Meta.full_name"><code class="name">var <span class="ident">full_name</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 </dl>
 </dd>

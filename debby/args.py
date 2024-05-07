@@ -2,37 +2,39 @@ import os
 from argparse import ArgumentParser
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Literal, Self, Sequence
+from typing import Any, Literal, Optional, Sequence, Tuple, Union
+
+from typing_extensions import Self
 
 
 @dataclass
 class Args:
-    files: Sequence[tuple[Path, Path]]
-    template: Path | None
+    files: Sequence[Tuple[Path, Path]]
+    template: Optional[Path]
     out_dir: Path
-    pyproject: Path | None
-    poetry: Path | None
-    name: str | None
-    source: str | None
-    version: str | None
-    section: str | None
-    priority: str | None
-    architecture: str | None
-    essential: Literal["yes", "no"] | None
-    maintainer: str | None
-    description: str | None
-    homepage: str | None
-    depends: str | None
-    pre_depends: str | None
-    recommends: str | None
-    suggests: str | None
-    enhances: str | None
-    breaks: str | None
-    conflicts: str | None
+    pyproject: Optional[Path]
+    poetry: Optional[Path]
+    name: Optional[str]
+    source: Optional[str]
+    version: Optional[str]
+    section: Optional[str]
+    priority: Optional[str]
+    architecture: Optional[str]
+    essential: Optional[Literal["yes", "no"]]
+    maintainer: Optional[str]
+    description: Optional[str]
+    homepage: Optional[str]
+    depends: Optional[str]
+    pre_depends: Optional[str]
+    recommends: Optional[str]
+    suggests: Optional[str]
+    enhances: Optional[str]
+    breaks: Optional[str]
+    conflicts: Optional[str]
     no_size: bool = False
 
     @classmethod
-    def parse(cls, argv: Sequence[str] | None = None) -> Self:
+    def parse(cls, argv: Optional[Sequence[str]] = None) -> Self:
         parser = ArgumentParser()
         parser.add_argument(
             "-f",
@@ -150,7 +152,7 @@ class Args:
         cls._add_dependencies_args(meta_overrides_group)
 
     @classmethod
-    def _add_dependencies_args(cls, parser: ArgumentParser | Any) -> None:
+    def _add_dependencies_args(cls, parser: Union[ArgumentParser, Any]) -> None:
         parser.add_argument_group("Dependencies", "Specify package dependencies")
         parser.add_argument(
             "--depends",
