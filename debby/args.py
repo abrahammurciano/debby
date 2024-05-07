@@ -2,7 +2,9 @@ import os
 from argparse import ArgumentParser
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Literal, Optional, Self, Sequence, Union
+from typing import Any, Literal, Optional, Sequence, Union
+
+from typing_extensions import Self
 
 
 @dataclass
