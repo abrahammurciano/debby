@@ -1,6 +1,6 @@
 import tomllib
 from pathlib import Path
-from typing import Any, Iterable, Mapping, TypedDict, override
+from typing import Any, Iterable, Mapping, TypedDict
 
 from .meta import MetaVars
 from .meta_loader import MetaLoader
@@ -14,7 +14,6 @@ class PyprojectMetaLoader(MetaLoader):
         assert self._args.pyproject is not None
         return self._args.pyproject
 
-    @override
     def load_from_source(self) -> MetaVars:
         project_data = tomllib.loads(self._pyproject.read_text())["project"]
         result: MetaVars = {
