@@ -2,14 +2,14 @@ import os
 from argparse import ArgumentParser
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Literal, Optional, Sequence, Union
+from typing import Any, Literal, Optional, Sequence, Tuple, Union
 
 from typing_extensions import Self
 
 
 @dataclass
 class Args:
-    files: Sequence[tuple[Path, Path]]
+    files: Sequence[Tuple[Path, Path]]
     template: Optional[Path]
     out_dir: Path
     pyproject: Optional[Path]
