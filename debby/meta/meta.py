@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Literal, TypedDict
+from typing import Literal, Optional, TypedDict
 
 
 class MetaVars(TypedDict, total=False):
@@ -29,22 +29,22 @@ class Meta:
     """Metadata for a Debian package."""
 
     name: str
-    source: str | None = None
+    source: Optional[str] = None
     version: str
-    section: str | None = None
-    priority: str | None = None
+    section: Optional[str] = None
+    priority: Optional[str] = None
     architecture: str = "all"
-    essential: Literal["yes", "no"] | None = None
+    essential: Optional[Literal["yes", "no"]] = None
     maintainer: str
     description: str
-    homepage: str | None = None
-    depends: str | None = None
-    pre_depends: str | None = None
-    recommends: str | None = None
-    suggests: str | None = None
-    enhances: str | None = None
-    breaks: str | None = None
-    conflicts: str | None = None
+    homepage: Optional[str] = None
+    depends: Optional[str] = None
+    pre_depends: Optional[str] = None
+    recommends: Optional[str] = None
+    suggests: Optional[str] = None
+    enhances: Optional[str] = None
+    breaks: Optional[str] = None
+    conflicts: Optional[str] = None
 
     @property
     def full_name(self) -> str:

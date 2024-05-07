@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-from typing import Sequence
+from typing import Optional, Sequence
 
 from debby.args import Args
 from debby.control_file import ControlFile
@@ -17,7 +17,7 @@ def create_package(args: Args) -> Path:
     return package.create(args.out_dir)
 
 
-def main(argv: Sequence[str] | None = None):
+def main(argv: Optional[Sequence[str]] = None):
     print(create_package(Args.parse(argv)))
 
 

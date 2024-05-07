@@ -1,5 +1,6 @@
-import tomllib
 from pathlib import Path
+
+import tomli
 
 from .meta import MetaVars
 from .meta_loader import MetaLoader
@@ -14,7 +15,7 @@ class PoetryMetaLoader(MetaLoader):
         return self._args.poetry
 
     def load_from_source(self) -> MetaVars:
-        poetry_data = tomllib.loads(self._pyproject.read_text())["tool"]["poetry"]
+        poetry_data = tomli.loads(self._pyproject.read_text())["tool"]["poetry"]
         result: MetaVars = {
             "name": poetry_data["name"],
             "version": poetry_data["version"],

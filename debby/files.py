@@ -1,6 +1,6 @@
 from functools import cached_property
 from pathlib import Path
-from typing import Iterable, Iterator, Mapping
+from typing import Iterable, Iterator, Mapping, Tuple
 
 
 class Files(Mapping[Path, Path]):
@@ -10,7 +10,7 @@ class Files(Mapping[Path, Path]):
         files: An iterable of pairs of source paths and destination paths.
     """
 
-    def __init__(self, files: Iterable[tuple[Path, Path]]) -> None:
+    def __init__(self, files: Iterable[Tuple[Path, Path]]) -> None:
         self._files = self._normalize_files(files)
 
     def __post_init__(self) -> None:
@@ -29,7 +29,7 @@ class Files(Mapping[Path, Path]):
 
     @classmethod
     def _normalize_files(
-        cls, files: Iterable[tuple[Path, Path]]
+        cls, files: Iterable[Tuple[Path, Path]]
     ) -> Mapping[Path, Path]:
         return {
             dst.relative_to(dst.anchor) if dst.is_absolute() else dst: src

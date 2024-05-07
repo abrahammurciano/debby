@@ -1,6 +1,7 @@
-import tomllib
 from pathlib import Path
-from typing import Any, Iterable, Mapping, TypedDict
+from typing import Any, Iterable, Mapping, Optional, TypedDict
+
+import tomli
 
 from .meta import MetaVars
 from .meta_loader import MetaLoader
@@ -15,7 +16,7 @@ class PyprojectMetaLoader(MetaLoader):
         return self._args.pyproject
 
     def load_from_source(self) -> MetaVars:
-        project_data = tomllib.loads(self._pyproject.read_text())["project"]
+        project_data = tomli.loads(self._pyproject.read_text())["project"]
         result: MetaVars = {
             "name": project_data["name"],
         }
@@ -30,7 +31,7 @@ class PyprojectMetaLoader(MetaLoader):
 
         return result
 
-    def _get_maintainer(self, project_data: Mapping[str, Any]) -> str | None:
+    def _get_maintainer(self, project_data: Mapping[str, Any]) -> Optional[str]:
         people: Iterable[_Person] = (
             project_data.get("maintainers") or project_data.get("authors") or ()
         )
@@ -45,7 +46,7 @@ class PyprojectMetaLoader(MetaLoader):
             return person.get("email")
         return None
 
-    def _get_homepage(self, urls: Mapping[str, str]) -> str | None:
+    def _get_homepage(self, urls: Mapping[str, str]) -> Optional[str]:
         for key in ("Homepage", "Repository", "Documentation"):
             if url := urls.get(key):
                 return url

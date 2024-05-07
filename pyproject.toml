@@ -11,7 +11,8 @@ documentation = "https://abrahammurciano.github.io/debby/debby"
 keywords = []
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.8"
+tomli = "^2.0.1"
 
 [tool.poetry.dev-dependencies]
 black = "*"
