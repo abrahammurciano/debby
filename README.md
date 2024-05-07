@@ -1,137 +1,5 @@
-# Python Package Template
+# Debby
 
-This repository contains the basic structure for a python package as well as some useful GitHub actions for maintaining the package.
-
-In order to use this template you must perform the following steps. In each step I will explain how you can do it manually and I will also provide commands (sorry windows users, sucks to suck) to automate the process where possible.
-
-## 1. Set command variables
-
-In the following instructions, commands will make reference to several variables. You can set these variables now so you can run all subsequent commands without having to edit them. (Replace `...` with actual values.)
-
-```sh
-PACKAGE="..." # The name of your package. Use kebab-case.
-MODULE=$(echo $PACKAGE | tr - _) # The name of your module. Should be the package name in snake_case.
-PACKAGE_DESCRIPTION="..." # A short description of your package
-YOUR_NAME="..." # Your name. Use spaces and start each word with an uppercase letter
-YOUR_EMAIL="..." # Your email address
-GITHUB_USERNAME="..." # Your GitHub username
-MIN_PYTHON_VERSION="..." # The minimum version of Python required to use this package
-```
-
-If you won't be using the commands below, just make a note of the values you would give to each variable for when they're needed.
-
-## 2. Clone the template
-
-Download the code and place it in a folder, then enter the folder. From now on all commands will be relative to this folder.
-
-```sh
-git clone https://github.com/abrahammurciano/python-package-template.git python-$PACKAGE
-cd python-$PACKAGE
-rm -rf .git
-```
-
-## 3. Replace placeholder text
-
-There are several placeholders that you must replace with values from step 1. These match this regular expression: `<<[A-Z_]+>>`. You can use your IDE to find all such placeholders and replace them, or you can use the following commands to do the same.
-
-```sh
-find ./ -type f -exec sed -i -e "s/debby/$PACKAGE/g" {} \;
-find ./ -type f -exec sed -i -e "s/debby/$MODULE/g" {} \;
-find ./ -type f -exec sed -i -e "s/Create .deb files easily using python package metadata/$PACKAGE_DESCRIPTION/g" {} \;
-find ./ -type f -exec sed -i -e "s/Abraham Murciano/$YOUR_NAME/g" {} \;
-find ./ -type f -exec sed -i -e "s/abrahammurciano@gmail.com/$YOUR_EMAIL/g" {} \;
-find ./ -type f -exec sed -i -e "s/abrahammurciano/$GITHUB_USERNAME/g" {} \;
-find ./ -type f -exec sed -i -e "s/3.11/$MIN_PYTHON_VERSION/g" {} \;
-```
-
-Also don't forget to replace any occurences of a placeholder in folder and file names.
-
-```sh
-mv '<<MODULE_NAME>>' $MODULE
-```
-
-## 4. Create a GitHub repository
-
-- Click [here](https://github.com/new) to create a new GitHub repository.
-- Name it `python-$PACKAGE`.
-- Enter the value of `$PACKAGE_DESCRIPTION` as the description.
-- Don't initialize the repository with a readme, a .gitignore, a license, or any other files.
-
-## 5. Store the necessary credentials
-
-### Create the necessary accounts
-- Create a [PyPI](https://pypi.org/account/register/) account if you don't have one.
-
-### Create a GitHub personal access token
-- Go to `Settings` > `Developer settings` > `Personal access tokens` > `Generate new token`.
-- Name it `GitHub Actions for $PACKAGE`.
-- Set it to not expire.
-- Select `repo` as the `Scopes` field.
-- Click `Generate token`.
-- Copy it for the next step.
-
-### Create a PyPI token
-You can generate one [here](https://pypi.org/manage/account/). Name it `$PACKAGE`.
-
-### Create the necessary secrets
-- Go to `your repository` > `Settings` > `Secrets` > `Actions`.
-- Create these new repository secrets:
-	- `PERSONAL_GH_TOKEN`
-	- `PYPI_TOKEN`
-
-### Grant write access to GitHub Actions
-- Go to `your repository` > `Settings` > `Actions` > `General`.
-- Under `Workflow permissions` select `Read and write permissions`.
-- Click `Save`.
-
-## 6. Push your code to GitHub
-
-You can push your code with the following commands.
-
-```sh
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin git@github.com:$GITHUB_USERNAME/python-$PACKAGE.git
-git push -u origin main
-```
-
-## 7. Enable GitHub pages
-
-- Go to `your repository` > `Settings` > `Pages`.
-- Under `source` select the branch `main`.
-- Then for the folder, instead of `/ (root)` choose `/docs`.
-- Click save.
-
-## 8. Enforce CI on pull requests to main
-
-First you must trigger the flow once so GitHub is aware of its existance.
-
-- Go to `your repository` > `Actions` > `Tests` > `Run Workflow` > `Run Workflow`
-- Go to `your repository` > `Actions` > `Docs & Format` > `Run Workflow` > `Run Workflow`
-
-Now you can require the test flow to run.
-
-- Go to `your repository` > `Settings` > `Branches` > `Add branch protection rule`.
-- For the `Branch name pattern` type `main`.
-- Check `Require status checks to pass before merging`.
-- Type `test`, make sure it comes up in autocomplete, and click it.
-- Type `docs_and_format`, make sure it comes up in autocomplete, and click it.
-- Then click `Save changes`.
-
-## 9. Some notes
-
-- If your minimum python version is less than 3.8, replace `importlib.metadata` with `importlib_metadata` in your `__init__.py` and add it as a dependency.
-```sh
-poetry add importlib_metadata
-```
-
-## 10. Delete these instructions
-
-Remove the text up to here from this file.
-
-# debby
 Create .deb files easily using python package metadata
 
 ## Installation
@@ -150,3 +18,46 @@ $ pip install debby
 [![PyPI - debby](https://img.shields.io/badge/PyPI-debby-006DAD?style=for-the-badge&logo=PyPI&logoColor=%23FFD242)](https://pypi.org/project/debby/)
 
 ## Usage
+
+This tool creates the directory structure (including the control file) to then create a .deb package with `dpkg-deb`.
+
+You may provide a template for the control file (see [Control File Template](#control-file-template)) or provide the metadata directly via the command line or environment variables.
+
+You may also provide files to include in the package with `-f/--file` option, which may be passed multiple times.
+
+You may also provide a source for the metadata (see [Metadata Sources](#metadata-sources)). You can also specify specific metadata values via the command line. If no metadata source is provided, and all the required metadata is not provided via the command line, an error will be raised.
+
+```sh
+OUT_DIR=$(debby -f path/to/binary /usr/bin/binary -f path/to/config /etc/config --pyproject pyproject.toml)
+dpkg-deb --build $OUT_DIR
+```
+
+### Metadata Sources
+
+Currently, the following metadata sources are supported:
+
+- `--pyproject`: Reads the metadata from the given pyproject.toml file, according to the [PEP 621](https://peps.python.org/pep-0621/) specification.
+- `--poetry`: Reads the metadata from the given pyproject.toml file, according to [Poetry](https://python-poetry.org/docs/pyproject/)'s specification.
+
+### Control File Template
+
+It is possible to provide a template for the control file with `-t/--template path/to/control.template`. If provided, this template will be used to generate the control file instead of creating one from scratch. The template should be a text file with the following allowed placeholders.
+
+| Placeholder | Description | Examples |
+| --- | --- | --- |
+| `{meta.name}` | The [name](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-package) of the package | `debby` |
+| `{meta.source}` | The [source](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-source) of the package | `debby` |
+| `{meta.version}` | The [version](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-version) of the package | `0.1.0` |
+| `{meta.section}` | The [section](https://www.debian.org/doc/debian-policy/ch-archive.html#s-subsections) of the package | `misc`, `python` |
+| `{meta.priority}` | The [priority](https://www.debian.org/doc/debian-policy/ch-archive.html#s-priorities) of the package | `optional` |
+| `{meta.architecture}` | The [architecture](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-architecture) of the package | `all` |
+| `{meta.eessential}` | The [essential](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-essential) status of the package | `yes`, `no` |
+| `{meta.maintainer}` | The [maintainer](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-maintainer) of the package | `Abraham Murciano <abrahammurciano@gmail.com>` |
+| `{meta.description}` | The [description](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-description) of the package | `Create .deb files easily using python package metadata` |
+| `{meta.homepage}` | The [homepage](https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-homepage) of the package | `https://abrahammurciano.github.io/debby/debby` |
+| `{meta.depends}` | The [dependencies](https://www.debian.org/doc/debian-policy/ch-relationships.html) of the package | `python3`, `jq, pv (>= 1.0.0)` |
+| `{meta.recommends}` | The [recommended packages](https://www.debian.org/doc/debian-policy/ch-relationships.html) of the package | `jq, pv (>= 1.0.0)` |
+| `{meta.suggests}` | The [suggested packages](https://www.debian.org/doc/debian-policy/ch-relationships.html) of the package | `jq, pv (>= 1.0.0)` |
+| `{meta.enhances}` | The [enhanced packages](https://www.debian.org/doc/debian-policy/ch-relationships.html) of the package | `jq, pv (>= 1.0.0)` |
+| `{meta.breaks}` | The [packages that this package breaks](https://www.debian.org/doc/debian-policy/ch-relationships.html) | `jq, pv (>= 1.0.0)` |
+| `{meta.conflicts}` | The [packages that this package conflicts with](https://www.debian.org/doc/debian-policy/ch-relationships.html) | `jq, pv (>= 1.0.0)` |
