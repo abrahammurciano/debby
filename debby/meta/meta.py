@@ -24,19 +24,19 @@ class MetaVars(TypedDict, total=False):
     conflicts: str
 
 
-@dataclass(kw_only=True, frozen=True, slots=True)
+@dataclass
 class Meta:
     """Metadata for a Debian package."""
 
     name: str
-    source: Optional[str] = None
     version: str
-    section: Optional[str] = None
-    priority: Optional[str] = None
-    architecture: str = "all"
-    essential: Optional[Literal["yes", "no"]] = None
     maintainer: str
     description: str
+    architecture: str = "all"
+    source: Optional[str] = None
+    section: Optional[str] = None
+    priority: Optional[str] = None
+    essential: Optional[Literal["yes", "no"]] = None
     homepage: Optional[str] = None
     depends: Optional[str] = None
     pre_depends: Optional[str] = None
