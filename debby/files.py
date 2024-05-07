@@ -1,6 +1,6 @@
 from functools import cached_property
 from pathlib import Path
-from typing import Iterable, Mapping
+from typing import Iterable, Iterator, Mapping
 
 
 class Files(Mapping[Path, Path]):
@@ -53,7 +53,7 @@ class Files(Mapping[Path, Path]):
     def __getitem__(self, key: Path) -> Path:
         return self._files[key]
 
-    def __iter__(self) -> Iterable[Path]:
+    def __iter__(self) -> Iterator[Path]:
         return iter(self._files)
 
     def __len__(self) -> int:

@@ -1,6 +1,5 @@
 import tomllib
 from pathlib import Path
-from typing import override
 
 from .meta import MetaVars
 from .meta_loader import MetaLoader
@@ -14,7 +13,6 @@ class PoetryMetaLoader(MetaLoader):
         assert self._args.poetry is not None
         return self._args.poetry
 
-    @override
     def load_from_source(self) -> MetaVars:
         poetry_data = tomllib.loads(self._pyproject.read_text())["tool"]["poetry"]
         result: MetaVars = {

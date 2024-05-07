@@ -18,7 +18,7 @@ class MetaLoader:
 
     def load(self) -> Meta:
         """Load the metadata."""
-        kwargs = {**self.load_from_source(), **self.overrides()}
+        kwargs: MetaVars = {**self.load_from_source(), **self.overrides()}
         try:
             return Meta(**kwargs)
         except TypeError as e:
