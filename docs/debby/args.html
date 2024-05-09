@@ -34,10 +34,10 @@
 <dl>
 <dt id="debby.args.Args"><code class="flex name class">
 <span>class <span class="ident">Args</span></span>
-<span>(</span><span>files: Sequence[Tuple[pathlib.Path, pathlib.Path]], template: Optional[pathlib.Path], out_dir: pathlib.Path, pyproject: Optional[pathlib.Path], poetry: Optional[pathlib.Path], name: Optional[str], source: Optional[str], version: Optional[str], section: Optional[str], priority: Optional[str], architecture: Optional[str], essential: Optional[Literal['yes', 'no']], maintainer: Optional[str], description: Optional[str], homepage: Optional[str], depends: Optional[str], pre_depends: Optional[str], recommends: Optional[str], suggests: Optional[str], enhances: Optional[str], breaks: Optional[str], conflicts: Optional[str], no_size: bool = False)</span>
+<span>(</span><span>files: Sequence[Tuple[pathlib.Path, pathlib.Path]], template: Optional[pathlib.Path], out_dir: pathlib.Path, preinst: Optional[pathlib.Path], preinst_cmd: Sequence[str], postinst: Optional[pathlib.Path], postinst_cmd: Sequence[str], prerm: Optional[pathlib.Path], prerm_cmd: Sequence[str], postrm: Optional[pathlib.Path], postrm_cmd: Sequence[str], pyproject: Optional[pathlib.Path], poetry: Optional[pathlib.Path], name: Optional[str], source: Optional[str], version: Optional[str], section: Optional[str], priority: Optional[str], architecture: Optional[str], essential: Optional[Literal['yes', 'no']], maintainer: Optional[str], description: Optional[str], homepage: Optional[str], depends: Optional[str], pre_depends: Optional[str], recommends: Optional[str], suggests: Optional[str], enhances: Optional[str], breaks: Optional[str], conflicts: Optional[str], no_size: bool = False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Args(files: Sequence[Tuple[pathlib.Path, pathlib.Path]], template: Union[pathlib.Path, NoneType], out_dir: pathlib.Path, pyproject: Union[pathlib.Path, NoneType], poetry: Union[pathlib.Path, NoneType], name: Union[str, NoneType], source: Union[str, NoneType], version: Union[str, NoneType], section: Union[str, NoneType], priority: Union[str, NoneType], architecture: Union[str, NoneType], essential: Union[Literal['yes', 'no'], NoneType], maintainer: Union[str, NoneType], description: Union[str, NoneType], homepage: Union[str, NoneType], depends: Union[str, NoneType], pre_depends: Union[str, NoneType], recommends: Union[str, NoneType], suggests: Union[str, NoneType], enhances: Union[str, NoneType], breaks: Union[str, NoneType], conflicts: Union[str, NoneType], no_size: bool = False)</p></div>
+<div class="desc"><p>Args(files: Sequence[Tuple[pathlib.Path, pathlib.Path]], template: Union[pathlib.Path, NoneType], out_dir: pathlib.Path, preinst: Union[pathlib.Path, NoneType], preinst_cmd: Sequence[str], postinst: Union[pathlib.Path, NoneType], postinst_cmd: Sequence[str], prerm: Union[pathlib.Path, NoneType], prerm_cmd: Sequence[str], postrm: Union[pathlib.Path, NoneType], postrm_cmd: Sequence[str], pyproject: Union[pathlib.Path, NoneType], poetry: Union[pathlib.Path, NoneType], name: Union[str, NoneType], source: Union[str, NoneType], version: Union[str, NoneType], section: Union[str, NoneType], priority: Union[str, NoneType], architecture: Union[str, NoneType], essential: Union[Literal['yes', 'no'], NoneType], maintainer: Union[str, NoneType], description: Union[str, NoneType], homepage: Union[str, NoneType], depends: Union[str, NoneType], pre_depends: Union[str, NoneType], recommends: Union[str, NoneType], suggests: Union[str, NoneType], enhances: Union[str, NoneType], breaks: Union[str, NoneType], conflicts: Union[str, NoneType], no_size: bool = False)</p></div>
 <h3>Class variables</h3>
 <dl>
 <dt id="debby.args.Args.architecture"><code class="name">var <span class="ident">architecture</span> : Optional[str]</code></dt>
@@ -96,7 +96,39 @@
 <dd>
 <div class="desc"></div>
 </dd>
+<dt id="debby.args.Args.postinst"><code class="name">var <span class="ident">postinst</span> : Optional[pathlib.Path]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.args.Args.postinst_cmd"><code class="name">var <span class="ident">postinst_cmd</span> : Sequence[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.args.Args.postrm"><code class="name">var <span class="ident">postrm</span> : Optional[pathlib.Path]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.args.Args.postrm_cmd"><code class="name">var <span class="ident">postrm_cmd</span> : Sequence[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt id="debby.args.Args.pre_depends"><code class="name">var <span class="ident">pre_depends</span> : Optional[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.args.Args.preinst"><code class="name">var <span class="ident">preinst</span> : Optional[pathlib.Path]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.args.Args.preinst_cmd"><code class="name">var <span class="ident">preinst_cmd</span> : Sequence[str]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.args.Args.prerm"><code class="name">var <span class="ident">prerm</span> : Optional[pathlib.Path]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="debby.args.Args.prerm_cmd"><code class="name">var <span class="ident">prerm_cmd</span> : Sequence[str]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -177,7 +209,15 @@
 <li><code><a title="debby.args.Args.out_dir" href="#debby.args.Args.out_dir">out_dir</a></code></li>
 <li><code><a title="debby.args.Args.parse" href="#debby.args.Args.parse">parse</a></code></li>
 <li><code><a title="debby.args.Args.poetry" href="#debby.args.Args.poetry">poetry</a></code></li>
+<li><code><a title="debby.args.Args.postinst" href="#debby.args.Args.postinst">postinst</a></code></li>
+<li><code><a title="debby.args.Args.postinst_cmd" href="#debby.args.Args.postinst_cmd">postinst_cmd</a></code></li>
+<li><code><a title="debby.args.Args.postrm" href="#debby.args.Args.postrm">postrm</a></code></li>
+<li><code><a title="debby.args.Args.postrm_cmd" href="#debby.args.Args.postrm_cmd">postrm_cmd</a></code></li>
 <li><code><a title="debby.args.Args.pre_depends" href="#debby.args.Args.pre_depends">pre_depends</a></code></li>
+<li><code><a title="debby.args.Args.preinst" href="#debby.args.Args.preinst">preinst</a></code></li>
+<li><code><a title="debby.args.Args.preinst_cmd" href="#debby.args.Args.preinst_cmd">preinst_cmd</a></code></li>
+<li><code><a title="debby.args.Args.prerm" href="#debby.args.Args.prerm">prerm</a></code></li>
+<li><code><a title="debby.args.Args.prerm_cmd" href="#debby.args.Args.prerm_cmd">prerm_cmd</a></code></li>
 <li><code><a title="debby.args.Args.priority" href="#debby.args.Args.priority">priority</a></code></li>
 <li><code><a title="debby.args.Args.pyproject" href="#debby.args.Args.pyproject">pyproject</a></code></li>
 <li><code><a title="debby.args.Args.recommends" href="#debby.args.Args.recommends">recommends</a></code></li>

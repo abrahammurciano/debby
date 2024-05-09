@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>debby.package API documentation</title>
+<title>debby.scripts.script API documentation</title>
 <meta name="description" content="" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
@@ -19,7 +19,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>debby.package</code></h1>
+<h1 class="title">Module <code>debby.scripts.script</code></h1>
 </header>
 <section id="section-intro">
 </section>
@@ -32,28 +32,34 @@
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="debby.package.Package"><code class="flex name class">
-<span>class <span class="ident">Package</span></span>
-<span>(</span><span>metadata: <a title="debby.meta.meta.Meta" href="meta/meta.html#debby.meta.meta.Meta">Meta</a>, control: <a title="debby.control_file.ControlFile" href="control_file.html#debby.control_file.ControlFile">ControlFile</a>, files: <a title="debby.files.Files" href="files.html#debby.files.Files">Files</a>, scripts: <a title="debby.scripts.scripts.Scripts" href="scripts/scripts.html#debby.scripts.scripts.Scripts">Scripts</a>)</span>
+<dt id="debby.scripts.script.Script"><code class="flex name class">
+<span>class <span class="ident">Script</span></span>
+<span>(</span><span>stage: <a title="debby.scripts.script_stage.ScriptStage" href="script_stage.html#debby.scripts.script_stage.ScriptStage">ScriptStage</a>, path: Optional[pathlib.Path] = None, commands: Sequence[str] = ())</span>
 </code></dt>
 <dd>
-<div class="desc"><p>A directory containing a Debian package.</p>
-<h2 id="args">Args</h2>
+<div class="desc"><p>A script to run at a specific stage of the package's lifecycle.</p></div>
+<h3>Class variables</h3>
 <dl>
-<dt><strong><code>metadata</code></strong></dt>
-<dd>The metadata for the package.</dd>
-<dt><strong><code>control</code></strong></dt>
-<dd>The control file for the package.</dd>
-<dt><strong><code>files</code></strong></dt>
-<dd>The files to put in the package.</dd>
-</dl></div>
+<dt id="debby.scripts.script.Script.commands"><code class="name">var <span class="ident">commands</span> : Sequence[str]</code></dt>
+<dd>
+<div class="desc"><p>The commands to run at the given stage.</p></div>
+</dd>
+<dt id="debby.scripts.script.Script.path"><code class="name">var <span class="ident">path</span> : Optional[pathlib.Path]</code></dt>
+<dd>
+<div class="desc"><p>The path to the script to run at the given stage.</p></div>
+</dd>
+<dt id="debby.scripts.script.Script.stage"><code class="name">var <span class="ident">stage</span> : <a title="debby.scripts.script_stage.ScriptStage" href="script_stage.html#debby.scripts.script_stage.ScriptStage">ScriptStage</a></code></dt>
+<dd>
+<div class="desc"><p>The stage of the package's lifecycle to run the script at.</p></div>
+</dd>
+</dl>
 <h3>Methods</h3>
 <dl>
-<dt id="debby.package.Package.create"><code class="name flex">
-<span>def <span class="ident">create</span></span>(<span>self, out_dir: pathlib.Path) ‑> pathlib.Path</span>
+<dt id="debby.scripts.script.Script.create"><code class="name flex">
+<span>def <span class="ident">create</span></span>(<span>self, path: pathlib.Path) ‑> None</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Create the directory structure of the package, which can be packaged into a .deb file with dpkg-deb.</p></div>
+<div class="desc"><p>Put the script in the given directory.</p></div>
 </dd>
 </dl>
 </dd>
@@ -68,15 +74,18 @@
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="debby" href="index.html">debby</a></code></li>
+<li><code><a title="debby.scripts" href="index.html">debby.scripts</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="debby.package.Package" href="#debby.package.Package">Package</a></code></h4>
+<h4><code><a title="debby.scripts.script.Script" href="#debby.scripts.script.Script">Script</a></code></h4>
 <ul class="">
-<li><code><a title="debby.package.Package.create" href="#debby.package.Package.create">create</a></code></li>
+<li><code><a title="debby.scripts.script.Script.commands" href="#debby.scripts.script.Script.commands">commands</a></code></li>
+<li><code><a title="debby.scripts.script.Script.create" href="#debby.scripts.script.Script.create">create</a></code></li>
+<li><code><a title="debby.scripts.script.Script.path" href="#debby.scripts.script.Script.path">path</a></code></li>
+<li><code><a title="debby.scripts.script.Script.stage" href="#debby.scripts.script.Script.stage">stage</a></code></li>
 </ul>
 </li>
 </ul>
