@@ -32,6 +32,14 @@ OUT_DIR=$(debby -f path/to/binary /usr/bin/binary -f path/to/config /etc/config 
 dpkg-deb --build $OUT_DIR
 ```
 
+### Scripts
+
+You may provide installation scripts with `--preinst`, `--postinst`, `--prerm`, and `--postrm`. These scripts will be included in the package and run before and after installation and removal of the package.
+
+Using a script flag without a path is equivalent to providing a path to a script in the current directory with the same name as the flag. For example, `--preinst` is equivalent to `--preinst ./preinst`.
+
+Alternatively, you may directly provide commands to run at the appropriate stage with `--preinst-cmd`, `--postinst-cmd`, `--prerm-cmd`, and `--postrm-cmd`. An appropriate script will be generated and included in the package. For example, `--preinst-cmd 'echo hello' --preinst-cmd 'echo world'` will generate a script that runs `echo hello` and `echo world` in sequence as the pre-installation script.
+
 ### Metadata Sources
 
 Currently, the following metadata sources are supported:
