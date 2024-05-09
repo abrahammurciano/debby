@@ -57,9 +57,9 @@ class Args:
         parser.add_argument(
             "-o",
             "--out-dir",
-            help="Path to the output directory. Defaults to debian/build.",
+            help="Path to the output directory. Defaults to the current working directory.",
             type=Path,
-            default=Path("debian/build"),
+            default=Path("."),
         )
         parser.add_argument(
             "--no-size",
