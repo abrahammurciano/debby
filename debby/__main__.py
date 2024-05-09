@@ -8,12 +8,15 @@ from debby.exceptions import DebbyError
 from debby.files import Files
 from debby.meta import MetaLoaderFactory
 from debby.package import Package
+from debby.scripts import Scripts
 
 
 def create_package(args: Args) -> Path:
     meta = MetaLoaderFactory(args).loader().load()
     files = Files(args.files)
-    package = Package(meta, ControlFile(meta, files, args.template), files)
+    package = Package(
+        meta, ControlFile(meta, files, args.template), files, Scripts(args)
+    )
     return package.create(args.out_dir)
 
 
