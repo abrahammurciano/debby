@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  docs_and_format:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

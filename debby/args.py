@@ -13,6 +13,14 @@ class Args:
     files: Sequence[Tuple[Path, Path]]
     template: Optional[Path]
     out_dir: Path
+    preinst: Optional[Path]
+    preinst_cmd: Sequence[str]
+    postinst: Optional[Path]
+    postinst_cmd: Sequence[str]
+    prerm: Optional[Path]
+    prerm_cmd: Sequence[str]
+    postrm: Optional[Path]
+    postrm_cmd: Sequence[str]
     pyproject: Optional[Path]
     poetry: Optional[Path]
     name: Optional[str]
@@ -59,14 +67,15 @@ class Args:
             "--out-dir",
             help="Path to the output directory. Defaults to the current working directory.",
             type=Path,
-            default=Path("."),
+            default=".",
         )
         parser.add_argument(
             "--no-size",
             help="Do not include the total size of the package in the control file.",
             action="store_true",
         )
-        cls._add_meta_source_group(parser)
+        cls._add_script_args(parser)
+        cls._add_meta_source_args(parser)
         cls._add_meta_override_args(parser)
         parser.add_argument(
             "-V",
@@ -77,7 +86,32 @@ class Args:
         return cls(**vars(parser.parse_args(argv)))
 
     @classmethod
-    def _add_meta_source_group(cls, parser: ArgumentParser) -> None:
+    def _add_script_args(cls, parser: ArgumentParser) -> None:
+        from debby.scripts.script_stage import ScriptStage
+
+        script_group = parser.add_argument_group(
+            "Scripts",
+            "Specify scripts to run at different stages of the package's lifecycle.",
+        )
+        for script_stage in ScriptStage:
+            group = script_group.add_mutually_exclusive_group()
+            group.add_argument(
+                f"--{script_stage.name}",
+                help=f"Include ./{script_stage.name} as the {script_stage.descriptive_name} script, or the given file if one is specified.",
+                type=Path,
+                nargs="?",
+                const=script_stage.name,
+            )
+            group.add_argument(
+                f"--{script_stage.name}-cmd",
+                help=f"Run the given command during the {script_stage.descriptive_name} stage. May be passed multiple times and they will all be run in order.",
+                action="append",
+                default=[],
+                metavar="COMMAND",
+            )
+
+    @classmethod
+    def _add_meta_source_args(cls, parser: ArgumentParser) -> None:
         meta_source_group = parser.add_mutually_exclusive_group()
         meta_source_group.add_argument(
             "--pyproject",
@@ -85,7 +119,7 @@ class Args:
             type=Path,
             metavar="PYPROJECT_FILE",
             nargs="?",
-            const=Path("pyproject.toml"),
+            const="pyproject.toml",
         )
         meta_source_group.add_argument(
             "--poetry",
@@ -93,7 +127,7 @@ class Args:
             type=Path,
             metavar="PYPROJECT_FILE",
             nargs="?",
-            const=Path("pyproject.toml"),
+            const="pyproject.toml",
         )
 
     @classmethod
