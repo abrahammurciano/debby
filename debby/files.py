@@ -1,3 +1,4 @@
+import shutil
 from functools import cached_property
 from pathlib import Path
 from typing import Iterable, Iterator, Mapping, Tuple
@@ -25,16 +26,10 @@ class Files(Mapping[Path, Path]):
         for dst, src in self.items():
             target = path / dst
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.symlink_to(src)
-
-    @classmethod
-    def _normalize_files(
-        cls, files: Iterable[Tuple[Path, Path]]
-    ) -> Mapping[Path, Path]:
-        return {
-            dst.relative_to(dst.anchor) if dst.is_absolute() else dst: src
-            for src, dst in files
-        }
+            if src.is_dir():
+                shutil.copytree(src, target)
+            else:
+                shutil.copy2(src, target)
 
     @property
     def sources(self) -> Iterable[Path]:
@@ -47,7 +42,7 @@ class Files(Mapping[Path, Path]):
     @cached_property
     def total_size(self) -> int:
         return sum(
-            (max(f.resolve().stat().st_size, 1024) // 1024) * 1024 for f in self.sources
+            self._size_of(path) for source in self.sources for path in source.rglob("*")
         )
 
     def __getitem__(self, key: Path) -> Path:
@@ -58,3 +53,24 @@ class Files(Mapping[Path, Path]):
 
     def __len__(self) -> int:
         return len(self._files)
+
+    @classmethod
+    def _normalize_files(
+        cls, files: Iterable[Tuple[Path, Path]]
+    ) -> Mapping[Path, Path]:
+        return {
+            dst.relative_to(dst.anchor) if dst.is_absolute() else dst: src
+            for src, dst in files
+        }
+
+    @classmethod
+    def _size_of(cls, path: Path) -> int:
+        """Get the size of a filesystem object for the Installed-Size field in the control file.
+
+        The disk space is given as the accumulated size of each regular file and symlink rounded to 1 KiB used units, and a baseline of 1 KiB for any other filesystem object type.
+
+        https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-installed-size
+        """
+        if path.is_file():
+            return max(1024, (path.stat().st_size // 1024) * 1024)
+        return 1024
