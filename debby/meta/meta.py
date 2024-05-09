@@ -32,7 +32,7 @@ class Meta:
     version: str
     maintainer: str
     description: str
-    architecture: str = "all"
+    architecture: str
     source: Optional[str] = None
     section: Optional[str] = None
     priority: Optional[str] = None
