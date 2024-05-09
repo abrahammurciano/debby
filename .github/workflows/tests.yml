@@ -19,4 +19,4 @@ jobs:
       - name: Install Dependencies
         run: poetry install
       - name: Test
-        run: dpkg-deb --build $(poetry run debby --file ./README.md /usr/bin/debby --poetry pyproject.toml -o ./dist)
+        run: dpkg-deb --build $(poetry run debby --file ./README.md /usr/bin/debby --poetry -o ./dist)
