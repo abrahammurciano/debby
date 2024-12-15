@@ -40,6 +40,10 @@
 <pre><code class="language-sh">OUT_DIR=$(debby -f path/to/binary /usr/bin/binary -f path/to/config /etc/config --pyproject pyproject.toml)
 dpkg-deb --build $OUT_DIR
 </code></pre>
+<h3 id="scripts">Scripts</h3>
+<p>You may provide installation scripts with <code>--preinst</code>, <code>--postinst</code>, <code>--prerm</code>, and <code>--postrm</code>. These scripts will be included in the package and run before and after installation and removal of the package.</p>
+<p>Using a script flag without a path is equivalent to providing a path to a script in the current directory with the same name as the flag. For example, <code>--preinst</code> is equivalent to <code>--preinst ./preinst</code>.</p>
+<p>Alternatively, you may directly provide commands to run at the appropriate stage with <code>--preinst-cmd</code>, <code>--postinst-cmd</code>, <code>--prerm-cmd</code>, and <code>--postrm-cmd</code>. An appropriate script will be generated and included in the package. For example, <code>--preinst-cmd 'echo hello' --preinst-cmd 'echo world'</code> will generate a script that runs <code>echo hello</code> and <code>echo world</code> in sequence as the pre-installation script.</p>
 <h3 id="metadata-sources">Metadata Sources</h3>
 <p>Currently, the following metadata sources are supported:</p>
 <ul>
@@ -367,6 +371,7 @@ dpkg-deb --build $OUT_DIR
 <li><a href="#installation">Installation</a></li>
 <li><a href="#links">Links</a></li>
 <li><a href="#usage">Usage</a><ul>
+<li><a href="#scripts">Scripts</a></li>
 <li><a href="#metadata-sources">Metadata Sources</a></li>
 <li><a href="#control-file-template">Control File Template</a></li>
 </ul>

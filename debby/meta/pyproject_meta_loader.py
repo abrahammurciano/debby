@@ -20,7 +20,7 @@ class PyprojectMetaLoader(MetaLoader):
         result: MetaVars = {
             "name": project_data["name"],
         }
-        if "version" not in project_data["dynamic"]:
+        if "version" not in project_data.get("dynamic", ()):
             result["version"] = project_data["version"]
         if maintainer := self._get_maintainer(project_data):
             result["maintainer"] = maintainer
