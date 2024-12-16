@@ -12,30 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v2
-        with:
-          python-version: "3.8"
-      - name: Get Poetry
-        run: pip install poetry
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+      - name: Install Python
+        run: uv python install
       - name: Set Version
-        run: poetry version $(echo ${{ github.ref_name }} | cut -d 'v' -f 2)
+        run: sed -e "s/0+dev/$(echo ${{ github.ref_name }} | cut -d 'v' -f 2)/" -i pyproject.toml
       - name: Build Package
-        run: poetry build
+        run: uv build
       - name: Check Build
         run: pip install dist/*.whl
       - name: Publish Pip Package
-        run: poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
-      - name: Build binary
-        run: |
-          pip install pyinstaller
-          pyinstaller debby/__main__.py --distpath dist/bin --onefile -n debby --collect-data debby --recursive-copy-metadata debby
-      - name: Build .deb package
-        run: dpkg-deb --build $(./dist/bin/debby --file ./dist/bin/debby /usr/bin/debby --poetry pyproject.toml -o ./dist)
-      - name: Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            dist/*.whl
-            dist/*.deb
-            dist/bin/debby
-          token: ${{ secrets.PERSONAL_GH_TOKEN }}
+        run: uv publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
