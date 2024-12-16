@@ -1,28 +1,18 @@
-# Poetry
+# uv
 
-This project uses poetry to manage dependencies. To get your development environment set up, run:
+This project uses uv to manage dependencies. To get your development environment set up, run:
 
 ```sh
-$ poetry install
+$ uv venv
 ```
 
 The activate your shell environment by running:
 
 ```sh
-$ poetry shell
+$ source .venv/bin/activate
 ```
 
 All future commands assume you have already run that in the current shell.
-
-# Tests
-
-This project uses pytest to run tests. To run tests locally, run:
-
-```sh
-$ pytest
-```
-
-Tests will be triggered in GitHub by opening a pull request to main.
 
 # Documentation
 
@@ -48,4 +38,4 @@ If you don't, it will be formatted automatically on merge to main.
 
 To deploy a new version simply create a release on GitHub. The version will be automatically detected from the tag name. It should start with `v` and be followed by the actual version string.
 
-Versions are deployed to PyPI and Anaconda automatically.
+Versions are deployed to PyPI automatically.
