@@ -37,10 +37,10 @@ hljs.highlightAll();
 <dl>
 <dt id="debby.args.Args"><code class="flex name class">
 <span>class <span class="ident">Args</span></span>
-<span>(</span><span>files: Sequence[Tuple[pathlib._local.Path, pathlib._local.Path]], template: Optional[pathlib._local.Path], out_dir: pathlib._local.Path, preinst: Optional[pathlib._local.Path], preinst_cmd: Sequence[str], postinst: Optional[pathlib._local.Path], postinst_cmd: Sequence[str], prerm: Optional[pathlib._local.Path], prerm_cmd: Sequence[str], postrm: Optional[pathlib._local.Path], postrm_cmd: Sequence[str], pyproject: Optional[pathlib._local.Path], poetry: Optional[pathlib._local.Path], name: Optional[str], source: Optional[str], version: Optional[str], section: Optional[str], priority: Optional[str], architecture: Optional[str], essential: Optional[Literal['yes', 'no']], maintainer: Optional[str], description: Optional[str], homepage: Optional[str], depends: Optional[str], pre_depends: Optional[str], recommends: Optional[str], suggests: Optional[str], enhances: Optional[str], breaks: Optional[str], conflicts: Optional[str], no_size: bool = False)</span>
+<span>(</span><span>files: Sequence[Tuple[pathlib.Path, pathlib.Path]], template: Optional[pathlib.Path], out_dir: pathlib.Path, preinst: Optional[pathlib.Path], preinst_cmd: Sequence[str], postinst: Optional[pathlib.Path], postinst_cmd: Sequence[str], prerm: Optional[pathlib.Path], prerm_cmd: Sequence[str], postrm: Optional[pathlib.Path], postrm_cmd: Sequence[str], pyproject: Optional[pathlib.Path], poetry: Optional[pathlib.Path], name: Optional[str], source: Optional[str], version: Optional[str], section: Optional[str], priority: Optional[str], architecture: Optional[str], essential: Optional[Literal['yes', 'no']], maintainer: Optional[str], description: Optional[str], homepage: Optional[str], depends: Optional[str], pre_depends: Optional[str], recommends: Optional[str], suggests: Optional[str], enhances: Optional[str], breaks: Optional[str], conflicts: Optional[str], no_size: bool = False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Args(files: Sequence[Tuple[pathlib._local.Path, pathlib._local.Path]], template: Optional[pathlib._local.Path], out_dir: pathlib._local.Path, preinst: Optional[pathlib._local.Path], preinst_cmd: Sequence[str], postinst: Optional[pathlib._local.Path], postinst_cmd: Sequence[str], prerm: Optional[pathlib._local.Path], prerm_cmd: Sequence[str], postrm: Optional[pathlib._local.Path], postrm_cmd: Sequence[str], pyproject: Optional[pathlib._local.Path], poetry: Optional[pathlib._local.Path], name: Optional[str], source: Optional[str], version: Optional[str], section: Optional[str], priority: Optional[str], architecture: Optional[str], essential: Optional[Literal['yes', 'no']], maintainer: Optional[str], description: Optional[str], homepage: Optional[str], depends: Optional[str], pre_depends: Optional[str], recommends: Optional[str], suggests: Optional[str], enhances: Optional[str], breaks: Optional[str], conflicts: Optional[str], no_size: bool = False)</p></div>
+<div class="desc"><p>Args(files: Sequence[Tuple[pathlib.Path, pathlib.Path]], template: pathlib.Path | None, out_dir: pathlib.Path, preinst: pathlib.Path | None, preinst_cmd: Sequence[str], postinst: pathlib.Path | None, postinst_cmd: Sequence[str], prerm: pathlib.Path | None, prerm_cmd: Sequence[str], postrm: pathlib.Path | None, postrm_cmd: Sequence[str], pyproject: pathlib.Path | None, poetry: pathlib.Path | None, name: str | None, source: str | None, version: str | None, section: str | None, priority: str | None, architecture: str | None, essential: Literal['yes', 'no'] | None, maintainer: str | None, description: str | None, homepage: str | None, depends: str | None, pre_depends: str | None, recommends: str | None, suggests: str | None, enhances: str | None, breaks: str | None, conflicts: str | None, no_size: bool = False)</p></div>
 <h3>Class variables</h3>
 <dl>
 <dt id="debby.args.Args.architecture"><code class="name">var <span class="ident">architecture</span> : Optional[str]</code></dt>
@@ -71,7 +71,7 @@ hljs.highlightAll();
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
-<dt id="debby.args.Args.files"><code class="name">var <span class="ident">files</span> : Sequence[Tuple[pathlib._local.Path, pathlib._local.Path]]</code></dt>
+<dt id="debby.args.Args.files"><code class="name">var <span class="ident">files</span> : Sequence[Tuple[pathlib.Path, pathlib.Path]]</code></dt>
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
@@ -91,15 +91,15 @@ hljs.highlightAll();
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
-<dt id="debby.args.Args.out_dir"><code class="name">var <span class="ident">out_dir</span> : pathlib._local.Path</code></dt>
+<dt id="debby.args.Args.out_dir"><code class="name">var <span class="ident">out_dir</span> : pathlib.Path</code></dt>
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
-<dt id="debby.args.Args.poetry"><code class="name">var <span class="ident">poetry</span> : Optional[pathlib._local.Path]</code></dt>
+<dt id="debby.args.Args.poetry"><code class="name">var <span class="ident">poetry</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
-<dt id="debby.args.Args.postinst"><code class="name">var <span class="ident">postinst</span> : Optional[pathlib._local.Path]</code></dt>
+<dt id="debby.args.Args.postinst"><code class="name">var <span class="ident">postinst</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
@@ -107,7 +107,7 @@ hljs.highlightAll();
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
-<dt id="debby.args.Args.postrm"><code class="name">var <span class="ident">postrm</span> : Optional[pathlib._local.Path]</code></dt>
+<dt id="debby.args.Args.postrm"><code class="name">var <span class="ident">postrm</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
@@ -119,7 +119,7 @@ hljs.highlightAll();
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
-<dt id="debby.args.Args.preinst"><code class="name">var <span class="ident">preinst</span> : Optional[pathlib._local.Path]</code></dt>
+<dt id="debby.args.Args.preinst"><code class="name">var <span class="ident">preinst</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
@@ -127,7 +127,7 @@ hljs.highlightAll();
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
-<dt id="debby.args.Args.prerm"><code class="name">var <span class="ident">prerm</span> : Optional[pathlib._local.Path]</code></dt>
+<dt id="debby.args.Args.prerm"><code class="name">var <span class="ident">prerm</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
@@ -139,7 +139,7 @@ hljs.highlightAll();
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
-<dt id="debby.args.Args.pyproject"><code class="name">var <span class="ident">pyproject</span> : Optional[pathlib._local.Path]</code></dt>
+<dt id="debby.args.Args.pyproject"><code class="name">var <span class="ident">pyproject</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
@@ -159,7 +159,7 @@ hljs.highlightAll();
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
-<dt id="debby.args.Args.template"><code class="name">var <span class="ident">template</span> : Optional[pathlib._local.Path]</code></dt>
+<dt id="debby.args.Args.template"><code class="name">var <span class="ident">template</span> : Optional[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"><p>The type of the None singleton.</p></div>
 </dd>
