@@ -199,38 +199,40 @@ class Args:
 
     @classmethod
     def _add_dependencies_args(cls, parser: Union[ArgumentParser, Any]) -> None:
-        parser.add_argument_group("Dependencies", "Specify package dependencies")
-        parser.add_argument(
+        dependencies_group = parser.add_argument_group(
+            "Dependencies", "Specify package dependencies"
+        )
+        dependencies_group.add_argument(
             "--depends",
             help="Specify packages that your package depends on. For example, 'python3, python3-requests (>= 2.24)'.",
             default=os.environ.get("DEBBY_META_DEPENDS"),
         )
-        parser.add_argument(
+        dependencies_group.add_argument(
             "--pre-depends",
             help="Specify packages that must be installed before your package is installed.",
             default=os.environ.get("DEBBY_META_PRE_DEPENDS"),
         )
-        parser.add_argument(
+        dependencies_group.add_argument(
             "--recommends",
             help="Specify packages that are recommended but not strictly required for your package.",
             default=os.environ.get("DEBBY_META_RECOMMENDS"),
         )
-        parser.add_argument(
+        dependencies_group.add_argument(
             "--suggests",
             help="Specify packages that are suggested but not required for your package.",
             default=os.environ.get("DEBBY_META_SUGGESTS"),
         )
-        parser.add_argument(
+        dependencies_group.add_argument(
             "--enhances",
             help="Specify packages that your package enhances.",
             default=os.environ.get("DEBBY_META_ENHANCES"),
         )
-        parser.add_argument(
+        dependencies_group.add_argument(
             "--breaks",
             help="Specify packages that your package breaks.",
             default=os.environ.get("DEBBY_META_BREAKS"),
         )
-        parser.add_argument(
+        dependencies_group.add_argument(
             "--conflicts",
             help="Specify packages that your package conflicts with.",
             default=os.environ.get("DEBBY_META_CONFLICTS"),
