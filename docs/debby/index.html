@@ -194,14 +194,14 @@ dpkg-deb --build $OUT_DIR
 <dl>
 <dt id="debby.ControlFile"><code class="flex name class">
 <span>class <span class="ident">ControlFile</span></span>
-<span>(</span><span>meta: <a title="debby.meta.meta.Meta" href="meta/meta.html#debby.meta.meta.Meta">Meta</a>, files: <a title="debby.files.Files" href="files.html#debby.files.Files">Files</a>, template: Optional[pathlib._local.Path] = None, include_size: bool = True)</span>
+<span>(</span><span>meta: <a title="debby.meta.meta.Meta" href="meta/meta.html#debby.meta.meta.Meta">Meta</a>, files: <a title="debby.files.Files" href="files.html#debby.files.Files">Files</a>, template: Optional[pathlib.Path] = None, include_size: bool = True)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
 <h3>Methods</h3>
 <dl>
 <dt id="debby.ControlFile.create"><code class="name flex">
-<span>def <span class="ident">create</span></span>(<span>self, path: pathlib._local.Path) ‑> None</span>
+<span>def <span class="ident">create</span></span>(<span>self, path: pathlib.Path) ‑> None</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -210,7 +210,7 @@ dpkg-deb --build $OUT_DIR
 </dd>
 <dt id="debby.Files"><code class="flex name class">
 <span>class <span class="ident">Files</span></span>
-<span>(</span><span>files: Iterable[Tuple[pathlib._local.Path, pathlib._local.Path]])</span>
+<span>(</span><span>files: Iterable[Tuple[pathlib.Path, pathlib.Path]])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>A mapping of target paths in the package to source paths on the filesystem.</p>
@@ -230,11 +230,11 @@ dpkg-deb --build $OUT_DIR
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="debby.Files.destinations"><code class="name">prop <span class="ident">destinations</span> : Iterable[pathlib._local.Path]</code></dt>
+<dt id="debby.Files.destinations"><code class="name">prop <span class="ident">destinations</span> : Iterable[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
-<dt id="debby.Files.sources"><code class="name">prop <span class="ident">sources</span> : Iterable[pathlib._local.Path]</code></dt>
+<dt id="debby.Files.sources"><code class="name">prop <span class="ident">sources</span> : Iterable[pathlib.Path]</code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -246,7 +246,7 @@ dpkg-deb --build $OUT_DIR
 <h3>Methods</h3>
 <dl>
 <dt id="debby.Files.package"><code class="name flex">
-<span>def <span class="ident">package</span></span>(<span>self, path: pathlib._local.Path) ‑> None</span>
+<span>def <span class="ident">package</span></span>(<span>self, path: pathlib.Path) ‑> None</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -356,7 +356,7 @@ dpkg-deb --build $OUT_DIR
 <h3>Methods</h3>
 <dl>
 <dt id="debby.Package.create"><code class="name flex">
-<span>def <span class="ident">create</span></span>(<span>self, out_dir: pathlib._local.Path) ‑> pathlib._local.Path</span>
+<span>def <span class="ident">create</span></span>(<span>self, out_dir: pathlib.Path) ‑> pathlib.Path</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Create the directory structure of the package, which can be packaged into a .deb file with dpkg-deb.</p></div>

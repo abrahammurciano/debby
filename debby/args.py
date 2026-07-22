@@ -77,6 +77,7 @@ class Args:
         cls._add_script_args(parser)
         cls._add_meta_source_args(parser)
         cls._add_meta_override_args(parser)
+        cls._add_dependencies_args(parser)
         parser.add_argument(
             "-V",
             action="version",
@@ -195,7 +196,6 @@ class Args:
             help="Specify the package homepage.",
             default=os.environ.get("DEBBY_META_HOMEPAGE"),
         )
-        cls._add_dependencies_args(meta_overrides_group)
 
     @classmethod
     def _add_dependencies_args(cls, parser: Union[ArgumentParser, Any]) -> None:
