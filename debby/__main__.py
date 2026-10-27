@@ -14,9 +14,10 @@ from debby.scripts import Scripts
 def create_package(args: Args) -> Path:
     meta = MetaLoaderFactory(args).loader().load()
     files = Files(args.files)
-    package = Package(
-        meta, ControlFile(meta, files, args.template), files, Scripts(args)
-    )
+    control = ControlFile(meta, files, args.template, include_size=not args.no_size)
+    package = Package(meta, control, files, Scripts(args))
+    if args.build:
+        return package.build(args.build)
     return package.create(args.out_dir)
 
 

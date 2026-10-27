@@ -41,6 +41,7 @@ class Args:
     breaks: Optional[str]
     conflicts: Optional[str]
     no_size: bool = False
+    build: Optional[Path] = None
 
     @classmethod
     def parse(cls, argv: Optional[Sequence[str]] = None) -> Self:
@@ -68,6 +69,13 @@ class Args:
             help="Path to the output directory. Defaults to the current working directory.",
             type=Path,
             default=".",
+        )
+        parser.add_argument(
+            "-b",
+            "--build",
+            help="Build the .deb file directly at the given path instead of creating a directory structure.",
+            type=Path,
+            metavar="DEB_FILE",
         )
         parser.add_argument(
             "--no-size",
