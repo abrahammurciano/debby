@@ -32,6 +32,16 @@ OUT_DIR=$(debby -f path/to/binary /usr/bin/binary -f path/to/config /etc/config 
 dpkg-deb --build $OUT_DIR
 ```
 
+Optionally this tool has the ability to create the .deb "ar" package natively.
+
+```sh
+debby                                   \
+    -f path/to/binary /usr/bin/binary   \
+    -f path/to/config /etc/config       \
+    --pyproject pyproject.toml          \
+    -b ./project.deb
+```
+
 ### Scripts
 
 You may provide installation scripts with `--preinst`, `--postinst`, `--prerm`, and `--postrm`. These scripts will be included in the package and run before and after installation and removal of the package.
