@@ -41,13 +41,8 @@ class Package:
         """Build a .deb file directly at the given path."""
         with tempfile.TemporaryDirectory() as tmpdir:
             tmpdir_path = Path(tmpdir)
-            package_dir = tmpdir_path / self.metadata.full_name
+            package_dir = self.create(tmpdir_path)
             debian_dir = package_dir / "DEBIAN"
-            debian_dir.mkdir(parents=True)
-            debian_dir.chmod(0o755)
-            self.control.create(debian_dir / "control")
-            self.scripts.create(debian_dir)
-            self.files.package(package_dir)
 
             control_tar = tmpdir_path / "control.tar.gz"
             with tarfile.open(control_tar, "w:gz", format=tarfile.USTAR_FORMAT) as tar:
