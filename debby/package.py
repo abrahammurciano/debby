@@ -1,4 +1,7 @@
 from pathlib import Path
+import tempfile
+import tarfile
+import unix_ar
 
 from debby.control_file import ControlFile
 from debby.files import Files
@@ -33,3 +36,41 @@ class Package:
         self.scripts.create(debian_dir)
         self.files.package(directory)
         return directory
+
+    def build(self, output_path: Path) -> Path:
+        """Build a .deb file directly at the given path."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmpdir_path = Path(tmpdir)
+            package_dir = self.create(tmpdir_path)
+            debian_dir = package_dir / "DEBIAN"
+
+            control_tar = tmpdir_path / "control.tar.gz"
+            with tarfile.open(control_tar, "w:gz", format=tarfile.USTAR_FORMAT) as tar:
+                control_file = debian_dir / "control"
+                tar.add(control_file, arcname="control")
+                for script_name in ("preinst", "postinst", "prerm", "postrm"):
+                    script_path = debian_dir / script_name
+                    if script_path.exists():
+                        tar.add(script_path, arcname=script_name)
+
+            data_tar = tmpdir_path / "data.tar.gz"
+            with tarfile.open(data_tar, "w:gz", format=tarfile.USTAR_FORMAT) as tar:
+                for item in package_dir.rglob("*"):
+                    if item.is_file():
+                        rel_path = item.relative_to(package_dir)
+                        if rel_path.parts and rel_path.parts[0] == "DEBIAN":
+                            continue
+                        tar.add(item, arcname=rel_path)
+
+            debian_binary = tmpdir_path / "debian-binary"
+            debian_binary.write_text("2.0\n")
+
+            try:
+                ar = unix_ar.open(output_path, "w")
+                ar.add(str(debian_binary), arcname="debian-binary")
+                ar.add(str(control_tar), arcname="control.tar.gz")
+                ar.add(str(data_tar), arcname="data.tar.gz")
+            finally:
+                ar.close()
+
+        return output_path
