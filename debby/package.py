@@ -55,18 +55,21 @@ class Package:
 
             data_tar = tmpdir_path / "data.tar.gz"
             with tarfile.open(data_tar, "w:gz", format=tarfile.USTAR_FORMAT) as tar:
-                for item in package_dir.rglob("*"):
-                    if item.is_file():
-                        rel_path = item.relative_to(package_dir)
-                        if rel_path.parts and rel_path.parts[0] == "DEBIAN":
-                            continue
-                        tar.add(item, arcname=rel_path)
+                # Include entries for the directories themselves, sorted so that
+                # parents precede their children, as dpkg-deb does. dpkg cannot
+                # unpack files into directories that have no tar entry and do
+                # not already exist on the target system.
+                for item in sorted(package_dir.rglob("*")):
+                    rel_path = item.relative_to(package_dir)
+                    if rel_path.parts and rel_path.parts[0] == "DEBIAN":
+                        continue
+                    tar.add(item, arcname=rel_path, recursive=False)
 
             debian_binary = tmpdir_path / "debian-binary"
             debian_binary.write_text("2.0\n")
 
+            ar = unix_ar.open(output_path, "w")
             try:
-                ar = unix_ar.open(output_path, "w")
                 ar.add(str(debian_binary), arcname="debian-binary")
                 ar.add(str(control_tar), arcname="control.tar.gz")
                 ar.add(str(data_tar), arcname="data.tar.gz")
